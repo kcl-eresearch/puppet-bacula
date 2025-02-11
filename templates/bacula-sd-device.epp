@@ -9,6 +9,9 @@
     Bacula::Yesno $removable_media,
     Bacula::Yesno $always_open,
     Integer $maxconcurjobs,
+    Optional[String] $changer_device = undef,
+    Optional[Integer] $drive_index = undef,
+    Optional[Bacula::Yesno] $autochanger = undef,
   |
 -%>
 Device {
@@ -21,4 +24,13 @@ Device {
     RemovableMedia = <%= bacula::yesno2str($removable_media) %>;
     AlwaysOpen     = <%= bacula::yesno2str($always_open) %>;
     Maximum Concurrent Jobs = <%= $maxconcurjobs %>
+<% unless $changer_device.empty { -%>
+    Changer Device = <%= $changer_device %>
+<% } -%>
+<% unless $drive_index.empty { -%>
+    Drive Index = <%= $drive_index %>
+<% } -%>
+<% unless $autochanger.empty { -%>
+    Autochanger = <%= bacula::yesno2str($autochanger) %>
+<% } -%>
 }

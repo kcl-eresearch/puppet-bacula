@@ -1,0 +1,14 @@
+<%
+  |
+    String $autochanger_name,
+    String $device,
+    Stdlib::Absolutepath $changer_device,
+    String $changer_command,
+  |
+-%>
+Autochanger {
+    Name            = "<%= $autochanger_name %>"
+    Device          = "<%= $device %>"
+    Changer Device  = "<%= $changer_device %>"
+    Changer Command = "<%= $changer_command %>"
+}
