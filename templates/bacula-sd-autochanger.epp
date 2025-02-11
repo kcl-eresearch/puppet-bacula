@@ -7,8 +7,8 @@
   |
 -%>
 Autochanger {
-    Name            = "<%= $autochanger_name %>"
-    Device          = "<%= $device %>"
-    Changer Device  = "<%= $changer_device %>"
+    Name            = <%= $autochanger_name %>
+    Device          = <%= $device %>
+    Changer Device  = <%= $changer_device %>
     Changer Command = "<%= $changer_command %>"
 }
