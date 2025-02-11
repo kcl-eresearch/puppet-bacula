@@ -55,6 +55,7 @@ define bacula::storage::device (
     changer_device  => $changer_device,
     autochanger     => $autochanger,
     drive_index     => $drive_index,
+    device_type     => $device_type,
   }
 
   concat::fragment { "bacula-storage-device-${name}":
