@@ -1,6 +1,7 @@
 <%
   |
     String $device_name,
+    String $device_type,
     String $media_type,
     String $device,
     Bacula::Yesno $label_media,
@@ -16,6 +17,7 @@
 -%>
 Device {
     Name           = <%= $device_name %>
+    Device Type    = <%= $device_type %>
     Media Type     = <%= $media_type %>
     Archive Device = <%= $device %>
     LabelMedia     = <%= bacula::yesno2str($label_media) %>; # lets Bacula label unlabeled media

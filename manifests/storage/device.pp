@@ -23,6 +23,7 @@
 #
 define bacula::storage::device (
   String[1]                      $device_name     = $name,
+  String[1]                      $device_type      = 'File',
   String[1]                      $media_type      = 'File',
   Stdlib::Absolutepath           $device          = '/bacula',
   Optional[Stdlib::Absolutepath] $changer_device  = undef,
