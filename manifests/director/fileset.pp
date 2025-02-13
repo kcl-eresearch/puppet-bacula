@@ -22,7 +22,7 @@ define bacula::director::fileset (
   Array[Stdlib::Absolutepath] $excludes      = [],
   Hash[String[1], Variant[String[1], Array[String[1]], Bacula::Yesno]] $options       = {
     'signature'   => 'SHA1',
-    'compression' => 'GZIP9',
+    'compression' => 'LZO',
   },
 ) {
   $epp_fileset_variables = {
