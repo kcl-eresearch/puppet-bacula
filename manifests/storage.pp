@@ -24,6 +24,7 @@
 # @param storage        The address to be configured on the director to communicate with this storage server
 # @param address        The listening address for the Storage Daemon
 # @param user           The posix user for bacula
+# @param manage_device  Whether to manage the device
 #
 class bacula::storage (
   String[1]            $services,
@@ -47,6 +48,7 @@ class bacula::storage (
   String[1]            $storage        = $trusted['certname'], # storage here is not storage_name
   String[1]            $address        = $facts['networking']['fqdn'],
   String[1]            $user           = $bacula::bacula_user,
+  Boolean              $manage_device  = true,
 ) inherits bacula {
   # Allow for package names to include EPP syntax for db_type
   $package_names = $packages.map |$p| {
@@ -70,9 +72,11 @@ class bacula::storage (
     content => epp('bacula/bacula-sd-header.epp'),
   }
 
-  bacula::storage::device { $device_name:
-    device        => $device,
-    maxconcurjobs => $maxconcurjobs,
+  if $manage_device {
+    bacula::storage::device { $device_name:
+      device        => $device,
+      maxconcurjobs => $maxconcurjobs,
+    }
   }
 
   concat::fragment { 'bacula-storage-dir':
