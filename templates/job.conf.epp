@@ -24,6 +24,7 @@
     Integer                  $reschedule_times,
     Optional[String]         $write_bootstrap,
     Optional[String]         $max_full_interval,
+    Boolean                  $spool_data,
   |
 -%>
 Job {
@@ -107,6 +108,8 @@ Job {
 <% if $max_full_interval { -%>
     Max Full Interval = <%= $max_full_interval %>
 <% } -%>
-
+<% if $spool_data { -%>
+    SpoolData = yes
+<% } -%>
 }
 

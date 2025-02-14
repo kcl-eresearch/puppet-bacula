@@ -13,6 +13,7 @@
     Optional[String] $changer_device = undef,
     Optional[Integer] $drive_index = undef,
     Optional[Bacula::Yesno] $autochanger = undef,
+    Optional[Stdlib::Absolutepath] $spool_directory = undef,
   |
 -%>
 Device {
@@ -34,5 +35,8 @@ Device {
 <% } -%>
 <% unless $autochanger.empty { -%>
     Autochanger = <%= bacula::yesno2str($autochanger) %>
+<% } -%>
+<% unless $spool_directory.empty { -%>
+    Spool Directory = <%= $spool_directory %>
 <% } -%>
 }

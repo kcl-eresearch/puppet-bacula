@@ -20,6 +20,7 @@
 # @param device_seltype  SELinux type for the device
 # @param director_name   Name of the Director allowed to connect to the Storage daemon
 # @param group           The posix group for bacula
+# @param spool_directory Optional path to spool directory to use with this device (for tape drives)
 #
 define bacula::storage::device (
   String[1]                      $device_name     = $name,
@@ -41,6 +42,7 @@ define bacula::storage::device (
   String[1]                      $device_seltype  = $bacula::device_seltype,
   String[1]                      $director_name   = $bacula::director_name,
   String[1]                      $group           = $bacula::bacula_group,
+  Optional[Stdlib::Absolutepath] $spool_directory = undef,
 ) {
   $epp_device_variables = {
     device_name     => $device_name,
@@ -56,6 +58,7 @@ define bacula::storage::device (
     autochanger     => $autochanger,
     drive_index     => $drive_index,
     device_type     => $device_type,
+    spool_directory => $spool_directory,
   }
 
   concat::fragment { "bacula-storage-device-${name}":
