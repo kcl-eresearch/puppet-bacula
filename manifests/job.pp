@@ -71,6 +71,7 @@ define bacula::job (
   Optional[String[1]]         $write_bootstrap     = undef,
   Optional[Bacula::Time]      $max_full_interval   = undef,
   Boolean                     $spool_data          = false,
+  Boolean                     $onefs               = true,
 ) {
   include bacula
   include bacula::client
@@ -100,6 +101,11 @@ define bacula::job (
       @@bacula::director::fileset { $name:
         files    => $files,
         excludes => $excludes,
+        options  => {
+          signature   => 'SHA1',
+          compression => 'LZO',
+          onefs       => bool2str($onefs, 'yes', 'no'),
+        }
         tag      => $resource_tags,
       }
     } else {
