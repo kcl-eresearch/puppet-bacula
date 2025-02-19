@@ -105,7 +105,7 @@ define bacula::job (
           signature   => 'SHA1',
           compression => 'LZO',
           onefs       => bool2str($onefs, 'yes', 'no'),
-        }
+        },
         tag      => $resource_tags,
       }
     } else {
